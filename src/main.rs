@@ -15,7 +15,7 @@ use schema::users::dsl::*;
 fn main() {
     dotenv().ok();
     let pool = establish_connection();
-    let connection: PgPooledConnection = pool.get().expect("Couldn't get DB connection from pool");
+    let mut connection: PgPooledConnection = pool.get().expect("Couldn't get DB connection from pool");
 
 
     let users_list = users.load::<models::User>(&mut connection).expect("Error loading users");
